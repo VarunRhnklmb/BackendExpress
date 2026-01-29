@@ -83,20 +83,15 @@ partialUpdateById = (req, res) => {
 
 // ----------------------Home products---------------
 // post home products
-const createHomeProducts = (req, res) => {
-  let newHomeProducts = req.body;
-  addHomeProducts(newHomeProducts);
-  res.send("Home products saved successfully")
-};
+ const createHomeProducts = (req , res) =>{
+    let newHomeProducts = req.body;
+    addHomeProducts(newHomeProducts);
+    res.send("Home products saved successfully")
+ };
 
-getAllHomeProducts = async (req, res) => {
-  try {
-    const homeItems = await fetchAllHomeProducts();
-    res.json({ success: true, data: homeItems });
-  } catch (error) {
-    console.error("Error fetching home products:", error);
-    res.status(500).json({ success: false, message: "Failed to fetch home products", error: error.message });
-  }
+ getAllHomeProducts = async (req, res) => {
+  const homeItems = await fetchAllHomeProducts();
+  res.json({ success: true, data: homeItems });
 };
 
 // ------------------------- VEG CONTROLLERS -------------------------
@@ -182,14 +177,14 @@ getFruitsVegItemsById = async (req, res) => {
 // ------------------------- ORDER CONTROLLERS -------------------------
 const createOrder = (req, res) => {
 
-  // get the order details from the request body
-  let orderDetails = req.body;
+    // get the order details from the request body
+    let orderDetails = req.body;
 
-  // send the data to service function to create the order
-  createNewOrder(orderDetails);
+    // send the data to service function to create the order
+    createNewOrder(orderDetails);
 
-  // respond with a success message
-  res.send("Order created successfully");
+    // respond with a success message
+    res.send("Order created successfully");
 };
 
 // get all orders
@@ -217,9 +212,9 @@ registeration = async (req, res) => {
     const response = await registerUser(req.body);
 
     res.status(201).json({
-
+     
       message: "User Registered Successfully",
-
+     
     });
   } catch (err) {
     res.status(400).json({
@@ -310,5 +305,5 @@ module.exports = {
   registerUser,
 
   loginUser,
-
+ 
 };
